@@ -1,38 +1,108 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+h2 {
+  font-size: 1.75rem;
+}
+
+input {
+  width: 100%;
+  padding: .25rem 0;
+  margin-top: .5rem;
+}
+
 .App {
-  text-align: center;
+  width: 850px;
+  margin: 1rem auto;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App > div {
+  margin: 1.5rem 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.Dashboard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 1rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.Dashboard div {
+  padding: 1.25rem;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.Dashboard #budgetTotal {
+  background-color: #e1e3e4;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Dashboard #budgetRemaining {
+  background-color: #d5eddb;
 }
+
+.Dashboard #budgetSpent {
+  background-color: #cbe5ff;
+}
+
+.Dashboard button, .AddExpense button {
+  background-color: #007dfe;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: .5rem;
+}
+
+.AddExpense ul {
+  margin: .75rem 0 1rem;
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 1rem;
+}
+
+.ExpenseList input {
+  margin-top: .75rem;
+}
+
+.ExpenseList ul {
+  margin: .75rem 0 1rem;
+  list-style-type: none;
+}
+
+.ExpenseList li {
+  padding: .75rem;
+  border: 1px solid #e1e3e4;
+}
+
+.ExpenseItem {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ExpenseItem > div {
+  display: flex;
+  column-gap: 1rem;
+}
+
+.expenseCost {
+  background-color: #007dfe;
+  color: #fff;
+  font-size: small;
+  padding: 0 .5rem;
+  clip-path: ellipse();
+}
+
+.ExpenseItem button {
+  background-color: transparent;
+  border: none;
+}
+
+.fa-times-circle {
+  font-size: large;
+  color: #000;
+}
+
