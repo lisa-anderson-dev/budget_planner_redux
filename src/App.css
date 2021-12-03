@@ -10,8 +10,31 @@ h2 {
 
 input {
   width: 100%;
-  padding: .25rem 0;
+  padding: .25rem .5rem;
   margin-top: .5rem;
+}
+
+.formBtn {
+  background-color: #007dfe;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: .5rem;
+}
+
+.iconBtn {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+
+.fas {
+  font-size: large;
+  color: #000;
+}
+
+::placeholder {
+  font-style: italic;
 }
 
 .App {
@@ -32,28 +55,37 @@ input {
 .Dashboard div {
   padding: 1.25rem;
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 
-.Dashboard #budgetTotal {
+#budgetTotal {
   background-color: #e1e3e4;
+  justify-content: space-between;
+  column-gap: .5rem;
 }
 
-.Dashboard #budgetRemaining {
+#budgetRemaining {
   background-color: #d5eddb;
 }
 
-.Dashboard #budgetSpent {
+#budgetSpent {
   background-color: #cbe5ff;
 }
 
-.Dashboard button, .AddExpense button {
-  background-color: #007dfe;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: .5rem;
+#budgetTotal input {
+  background-color: #fff;
+}
+
+#budgetTotal .fas {
+  margin-top: .4rem;
+}
+
+#budgetTotal .fa-check-circle {
+  color: #43af49;
+}
+
+#budgetTotal .fa-times-circle, .negative {
+  color: #ea1f25;
 }
 
 .AddExpense ul {
@@ -71,6 +103,8 @@ input {
 .ExpenseList ul {
   margin: .75rem 0 1rem;
   list-style-type: none;
+  height: 250px;
+  overflow: auto;
 }
 
 .ExpenseList li {
@@ -92,17 +126,7 @@ input {
   background-color: #007dfe;
   color: #fff;
   font-size: small;
-  padding: 0 .5rem;
+  padding: 0 .75rem;
   clip-path: ellipse();
-}
-
-.ExpenseItem button {
-  background-color: transparent;
-  border: none;
-}
-
-.fa-times-circle {
-  font-size: large;
-  color: #000;
 }
 

@@ -6,7 +6,7 @@ function ExpenseItem(props) {
             <div>{props.name}</div>
             <div>
                 <div className="expenseCost">${props.cost}</div>
-                <button className="deleteBtn"><i className='fas fa-times-circle'></i></button></div>
+                <button className="iconBtn" onClick={props.deleteExpense}><i className='fas fa-times-circle'></i></button></div>
         </div>
     );
 }
