@@ -3,21 +3,19 @@ import './App.css';
 
 import Dashboard from './components/Dashboard';
 import ExpenseList from './components/ExpenseList';
-import ExpenseItem from './components/ExpenseItem';
 import AddExpense from './components/AddExpense';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      editBudget: false,
+      budgetMode: false,
       newBudget: "",
       budgetTotal: 2000,
       inputExpenseName: "",
       inputExpenseCost: "",
       inputSearch: "",
       searchMode: false,
-      searchResults: [],
       expenseList: [
         {
           name: "Shopping",
@@ -51,42 +49,37 @@ class App extends React.Component {
 
   switchBudgetMode = () => {
     this.setState({
-      editBudget: true,
+      budgetMode: true,
       newBudget: this.state.budgetTotal
     })
   }
 
   saveNewBudget = () => {
-    this.setState({
-      budgetTotal: this.state.newBudget,
-      newBudget: "",
-      editBudget: false
-    })
+    if (Number(this.state.newBudget) < 1) {
+      alert("Budget must be at least $1")
+    }
+    else {
+      this.setState({
+        budgetTotal: Number(this.state.newBudget),
+        newBudget: "",
+        budgetMode: false
+      })
+    }
   }
 
   cancelNewBudget = () => {
     this.setState({
       newBudget: "",
-      editBudget: false
+      budgetMode: false
     })
   }
 
   searchExpense = (event) => {
-    if (event.target.value) {
-      const searchResults = this.state.expenseList.filter((e) => e.name.toLowerCase().includes(event.target.value.toLowerCase()));
-      this.setState({
-        inputSearch: event.target.value,
-        searchMode: true,
-        searchResults: searchResults
-      });
-    }
-    else {
-      this.setState({
-        inputSearch: event.target.value,
-        searchMode: false,
-        searchResults: ""
-      });
-    }
+    const mode = event.target.value ? true : false;
+    this.setState({
+      inputSearch: event.target.value,
+      searchMode: mode
+    });
   }
 
   deleteExpense = (e) => {
@@ -99,17 +92,15 @@ class App extends React.Component {
       this.setState({
         expenseList: this.state.expenseList
       });
-      if (this.state.searchMode) {
-        const searchResults = this.state.expenseList.filter((e) => e.name.toLowerCase().includes(this.state.inputSearch.toLowerCase()));
-        this.setState({
-          searchResults: searchResults
-        });
-      }
     }
   }
 
   addExpense = () => {
-    if (this.state.inputExpenseName && this.state.inputExpenseCost !== "") {
+    if (!this.state.inputExpenseName || this.state.inputExpenseCost === "")
+      alert("Cannot add expense without a name and cost");
+    else if (Number(this.state.inputExpenseCost) < 1)
+      alert("Cost must be at least $1")
+    else {
       const newExpense = {
         name: this.state.inputExpenseName,
         cost: Number(this.state.inputExpenseCost)
@@ -121,25 +112,22 @@ class App extends React.Component {
         inputExpenseCost: ""
       });
     }
-    else {
-      alert("Cannot add expense without a name and cost");
-    }
   }
 
   render() {
     const budgetSpent = this.state.expenseList.reduce((sum, e) => sum += e.cost, 0);
     const budgetRemaining = this.state.budgetTotal - budgetSpent;
-    const list = this.state.searchMode ? this.state.searchResults : this.state.expenseList;
-    const expenseList = list.map((e) => 
-      <li key={e.name.toLowerCase().replace(/\s/g, '-')}>
-        <ExpenseItem name={e.name} cost={e.cost} deleteExpense={this.deleteExpense} />
-      </li>);
     return (
       <div className="App">
+
         <h1>My Budget Planner</h1>
-        <Dashboard editBudget={this.state.editBudget} newBudget={this.state.newBudget} budgetTotal={this.state.budgetTotal} budgetRemaining={budgetRemaining} budgetSpent={budgetSpent} handleChange={this.handleChange} switchBudgetMode={this.switchBudgetMode} cancelNewBudget={this.cancelNewBudget} saveNewBudget={this.saveNewBudget} />
-        <ExpenseList inputSearch={this.state.inputSearch} expenseList={expenseList} searchExpense={this.searchExpense} />
+
+        <Dashboard budgetMode={this.state.budgetMode} newBudget={this.state.newBudget} budgetTotal={this.state.budgetTotal} budgetRemaining={budgetRemaining} budgetSpent={budgetSpent} handleChange={this.handleChange} switchBudgetMode={this.switchBudgetMode} cancelNewBudget={this.cancelNewBudget} saveNewBudget={this.saveNewBudget} />
+
+        <ExpenseList searchMode={this.state.searchMode} inputSearch={this.state.inputSearch} expenseList={this.state.expenseList} searchExpense={this.searchExpense} deleteExpense={this.deleteExpense} />
+
         <AddExpense inputExpenseName={this.state.inputExpenseName} inputExpenseCost={this.state.inputExpenseCost} handleChange={this.handleChange} addExpense={this.addExpense} />
+        
       </div>
     );
   }

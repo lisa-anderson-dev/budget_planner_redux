@@ -11,7 +11,7 @@ function AddExpense(props) {
               </li>
               <li>
                   <label htmlFor="inputExpenseCost">Cost</label>
-                  <input type="number" name="inputExpenseCost" id="inputExpenseCost" value={props.inputExpenseCost} onChange={props.handleChange} />
+                  <input type="number" name="inputExpenseCost" id="inputExpenseCost" min="1" value={props.inputExpenseCost} onChange={props.handleChange} />
               </li>
             </ul>
             <button className="formBtn" onClick={props.addExpense}>Save</button>

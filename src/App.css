@@ -38,18 +38,24 @@ input {
 }
 
 .App {
-  width: 850px;
-  margin: 1rem auto;
+  width: 100%;
+  margin: auto;
 }
 
-.App > div {
-  margin: 1.5rem 0;
+.App > * {
+  margin: 1.5rem 1rem;
+}
+
+.Dashboard {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
 }
 
 .Dashboard {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column-gap: 1rem;
+  grid-template-columns: auto;
+  grid-gap: 1rem
 }
 
 .Dashboard div {
@@ -92,7 +98,7 @@ input {
   margin: .75rem 0 1rem;
   list-style-type: none;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-column-gap: 1rem;
 }
 
@@ -130,3 +136,16 @@ input {
   clip-path: ellipse();
 }
 
+@media screen and (min-width: 575px) {
+  .App {
+    max-width: 800px;
+  }
+
+  .Dashboard {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .AddExpense ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
