@@ -25,6 +25,8 @@ input {
 .iconBtn {
   background-color: transparent;
   border: none;
+  display: flex;
+  align-items: center;
 }
 
 .fas {
@@ -46,21 +48,16 @@ input {
 }
 
 .Dashboard {
-  display: flex;
-  flex-direction: column;
-  row-gap: 1rem;
-}
-
-.Dashboard {
   display: grid;
   grid-template-columns: auto;
   grid-gap: 1rem
 }
 
 .Dashboard div {
-  padding: 1.25rem;
+  padding: 0 1.25rem;
   display: flex;
   align-items: center;
+  height: 4.5em;
 }
 
 #budgetTotal {
@@ -108,7 +105,7 @@ input {
 .ExpenseList ul {
   margin: .75rem 0 1rem;
   list-style-type: none;
-  height: 250px;
+  height: 15em;
   overflow: auto;
 }
 
@@ -120,6 +117,7 @@ input {
 .ExpenseItem {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .ExpenseItem > div {
