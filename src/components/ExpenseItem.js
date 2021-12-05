@@ -19,6 +19,8 @@ const ExpenseCost = styled.div`
     height: 1.5em;
     font-size: small;
     position: relative;
+    display:flex;
+    align-items: center;
 
     &::before, &::after {
         content: "";
