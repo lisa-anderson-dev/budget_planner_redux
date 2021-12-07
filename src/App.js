@@ -22,7 +22,7 @@ const AppDiv = styled.div`
 
 const UserContext = createContext();
 
-function App(props) {
+function App() {
   const [budgetMode, setBudgetMode] = useState(false);
   const [budgetTotal, setBudgetTotal] = useState(2000);
   const [inputSearch, setInputSearch] = useState("");
