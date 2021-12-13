@@ -7,6 +7,9 @@ import AddExpense from './components/AddExpense';
 
 import styled from "styled-components";
 
+import {useSelector, useDispatch} from 'react-redux';
+import {addExpenseAction, deleteExpenseAction, updateBudgetAction} from './actions';
+
 const AppDiv = styled.div`
   width: 100%;
   margin: auto;
@@ -23,8 +26,13 @@ const AppDiv = styled.div`
 const UserContext = createContext();
 
 function App() {
+  // Redux-managed states
+  const expenseList = useSelector(state => state.expenseList);
+  const budgetTotal = useSelector(state => state.budgetTotal);
+  const dispatch = useDispatch();
+
+  // React-managed states
   const [budgetMode, setBudgetMode] = useState(false);
-  const [budgetTotal, setBudgetTotal] = useState(2000);
   const [inputSearch, setInputSearch] = useState("");
   const [searchMode, setSearchMode] = useState(false);
   const [formField, setFormField] = useState({
@@ -32,28 +40,6 @@ function App() {
     inputExpenseName: "",
     inputExpenseCost: ""
   });
-  const [expenseList, setExpenseList] = useState([
-    {
-      name: "Shopping",
-      cost: 50
-    },
-    {
-      name: "Vacation",
-      cost: 300
-    },
-    {
-      name: "Transportation",
-      cost: 70
-    },
-    {
-      name: "Gas",
-      cost: 400
-    },
-    {
-      name: "Child Care",
-      cost: 500
-    }
-  ]);
 
   const handleChange = (event) => {
     setFormField(previousState => {
@@ -73,7 +59,7 @@ function App() {
       alert("Budget must be at least $1")
     }
     else {
-      setBudgetTotal(formField.newBudget);
+      dispatch(updateBudgetAction(formField.newBudget));
       setBudgetMode(false);
     }
   }
@@ -99,10 +85,7 @@ function App() {
     if (deleteConfirm) {
       const name = e.target.parentElement.parentElement.previousElementSibling.innerHTML;
       const cost = Number(e.target.parentElement.previousElementSibling.innerHTML.slice(1));
-      const list = [...expenseList];
-      const idx = list.findIndex((e) => e.name === name && e.cost === cost);
-      list.splice(idx, 1);
-      setExpenseList(list);
+      dispatch(deleteExpenseAction(name, cost));
     }
   }
 
@@ -112,13 +95,9 @@ function App() {
     else if (Number(formField.inputExpenseCost) < 1)
       alert("Cost must be at least $1")
     else {
-      const newExpense = {
-        name: formField.inputExpenseName,
-        cost: Number(formField.inputExpenseCost)
-      };
-      const list = [...expenseList];
-      list.push(newExpense);
-      setExpenseList(list);
+      const name = formField.inputExpenseName;
+      const cost = Number(formField.inputExpenseCost);
+      dispatch(addExpenseAction(name, cost))
       setFormField(previousState => {
         return {
           ...previousState,
