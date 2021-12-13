@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/budget_planner_redux/static/css/main.89c81d84.chunk.css",
+    "main.js": "/budget_planner_redux/static/js/main.fa3f434b.chunk.js",
+    "main.js.map": "/budget_planner_redux/static/js/main.fa3f434b.chunk.js.map",
+    "runtime-main.js": "/budget_planner_redux/static/js/runtime-main.6ac4d495.js",
+    "runtime-main.js.map": "/budget_planner_redux/static/js/runtime-main.6ac4d495.js.map",
+    "static/js/2.779cad4a.chunk.js": "/budget_planner_redux/static/js/2.779cad4a.chunk.js",
+    "static/js/2.779cad4a.chunk.js.map": "/budget_planner_redux/static/js/2.779cad4a.chunk.js.map",
+    "static/js/3.8028a99d.chunk.js": "/budget_planner_redux/static/js/3.8028a99d.chunk.js",
+    "static/js/3.8028a99d.chunk.js.map": "/budget_planner_redux/static/js/3.8028a99d.chunk.js.map",
+    "index.html": "/budget_planner_redux/index.html",
+    "static/css/main.89c81d84.chunk.css.map": "/budget_planner_redux/static/css/main.89c81d84.chunk.css.map",
+    "static/js/2.779cad4a.chunk.js.LICENSE.txt": "/budget_planner_redux/static/js/2.779cad4a.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6ac4d495.js",
+    "static/js/2.779cad4a.chunk.js",
+    "static/css/main.89c81d84.chunk.css",
+    "static/js/main.fa3f434b.chunk.js"
+  ]
+}
